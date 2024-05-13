@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LastBeer.Back.Models
 {
-    public class FavouriteBar
+    public class VisitedBar
     {
         [Key]
         public int Id { get; set; }
@@ -12,5 +12,6 @@ namespace LastBeer.Back.Models
         public Bar Bar { get; set; }
         [ForeignKey("UserId")]
         public int UserId { get; set; }
+        public DateTime VisitedDate { get; set; }
     }
 }
