@@ -10,9 +10,9 @@ namespace LastBeer.Back.Models
         public bool IsFavourite { get; set; }
         [ForeignKey("BarId")]
         public int BarId { get; set; }
+        public Bar Bar { get; set; }
         [ForeignKey("UserId")]
         public int UserId { get; set; }
-        public virtual User User { get; set; }
-        public virtual Bar Bar { get; set; }
+        //public List<Bar> Favorites { get; set; } = new List<Bar>();
     }
 }

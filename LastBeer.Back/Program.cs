@@ -1,5 +1,8 @@
 using LastBeer.Back.Data;
+using LastBeer.Back.Repository.IRepository;
+using LastBeer.Back.Repository;
 using Microsoft.EntityFrameworkCore;
+using LastBeer.Back.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING"));
 });
+
+//Agregar Repositorios
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+//Agregar Automapper
+builder.Services.AddAutoMapper(typeof(AppMapper));
 
 var app = builder.Build();
 

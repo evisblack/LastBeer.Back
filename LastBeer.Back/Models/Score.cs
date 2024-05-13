@@ -13,8 +13,5 @@ namespace LastBeer.Back.Models
         public int GameId { get; set; }
         public int Points { get; set; }
         public DateTime ScoreDate { get; set; }
-
-        public virtual Game Game { get; set; }
-        public virtual User User { get; set; }
     }
 }
