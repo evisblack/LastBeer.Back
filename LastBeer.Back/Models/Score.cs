@@ -11,6 +11,7 @@ namespace LastBeer.Back.Models
         public int UserId { get; set; }
         [ForeignKey("GameId")]
         public int GameId { get; set; }
+        public Game Game { get; set; }
         public int Points { get; set; }
         public DateTime ScoreDate { get; set; }
     }

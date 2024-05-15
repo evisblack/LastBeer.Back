@@ -12,11 +12,6 @@ namespace LastBeer.Back.Repository
         {
             _dbContext = dbContext;
         }
-        public bool DeleteUser(User user)
-        {
-            _dbContext.Users.Remove(user);
-            return Save();
-        }
 
         public User GetById(int id)
         {
@@ -26,15 +21,12 @@ namespace LastBeer.Back.Repository
         public ICollection<User> GetUsers()
         {
             return _dbContext.Users
-        .Include(u => u.Favorites)
-            .ThenInclude(f => f.Bar) // Esto carga la información del bar dentro de los favoritos
-        .OrderBy(u => u.Name)
-        .ToList();
+                .OrderBy(u => u.Name)
+                .ToList();
         }
 
         public bool InsertUser(User user)
         {
-            //user.Password = HashPassword(user.Password);
             _dbContext.Users.Add(user);
             return Save();
         }
@@ -42,8 +34,41 @@ namespace LastBeer.Back.Repository
         public User GetUserWithFavouriteBars(int id)
         {
             return _dbContext.Users
+                .Where(u => u.Id == id)
                 .Include(u => u.Favorites)
-                .FirstOrDefault(u => u.Id == id);
+                    .ThenInclude(f => f.Bar) // Esto carga la información del bar dentro de los favoritos
+                .FirstOrDefault();
+        }
+
+        public User GetUserWithVisitedBars(int id)
+        {
+            return _dbContext.Users
+                .Where(u => u.Id == id)
+                .Include(u => u.VisitedBars)
+                    .ThenInclude(f => f.Bar)
+                .FirstOrDefault();
+        }
+
+        public User GetUserWithScores(int id)
+        {
+            return _dbContext.Users
+                .Where(u => u.Id == id)
+                .Include(u => u.Scores)
+                    .ThenInclude(f => f.Game)
+                .FirstOrDefault();
+        }
+
+        public User GetUserWithAllData(int id)
+        {
+            return _dbContext.Users
+                .Where(u => u.Id == id)
+                .Include(u => u.Favorites)
+                    .ThenInclude(f => f.Bar)
+                .Include(u => u.VisitedBars)
+                    .ThenInclude(f => f.Bar)
+                .Include(u => u.Scores)
+                    .ThenInclude(f => f.Game)
+                .FirstOrDefault();
         }
 
         public bool Save()
@@ -72,6 +97,12 @@ namespace LastBeer.Back.Repository
         public bool UserExistsById(int userId)
         {
             return _dbContext.Users.Any(u => u.Id == userId);
+        }
+
+        public bool DeleteUser(User user)
+        {
+            _dbContext.Users.Remove(user);
+            return Save();
         }
     }
 }

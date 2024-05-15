@@ -8,6 +8,8 @@ namespace LastBeer.Back.Mappers
         public AppMapper()
         {
             CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, UserInsertDto>().ReverseMap();
+            CreateMap<User, UserUpdateDto>().ReverseMap();
         }
     }
 }

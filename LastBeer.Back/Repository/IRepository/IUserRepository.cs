@@ -8,6 +8,9 @@ namespace LastBeer.Back.Repository.IRepository
         User GetById(int id);
         ICollection<User> GetUserByUserName(string userName);
         User GetUserWithFavouriteBars(int id);
+        User GetUserWithVisitedBars(int id);
+        User GetUserWithScores(int id);
+        User GetUserWithAllData(int id);
         bool InsertUser(User user);
         bool UpdateUser(User user);
         bool DeleteUser(User user);
