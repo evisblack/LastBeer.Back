@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LastBeer.Back.Models
+namespace LastBeer.Back.Models.Dtos.UserDtos
 {
     public class UserUpdateDto
     {
@@ -16,6 +16,7 @@ namespace LastBeer.Back.Models
 
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
+        public string Role { get; set; }
 
     }
 }

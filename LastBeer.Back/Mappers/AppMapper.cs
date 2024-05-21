@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LastBeer.Back.Models;
+using LastBeer.Back.Models.Dtos.UserDtos;
 
 namespace LastBeer.Back.Mappers
 {
@@ -10,6 +11,8 @@ namespace LastBeer.Back.Mappers
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<User, UserInsertDto>().ReverseMap();
             CreateMap<User, UserUpdateDto>().ReverseMap();
+            CreateMap<User, UserLoginResponseDto>().ReverseMap();
+            CreateMap<User, UserLoginDto>().ReverseMap();
         }
     }
 }

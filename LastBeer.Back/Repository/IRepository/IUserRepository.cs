@@ -1,4 +1,5 @@
 ﻿using LastBeer.Back.Models;
+using LastBeer.Back.Models.Dtos.UserDtos;
 
 namespace LastBeer.Back.Repository.IRepository
 {
@@ -10,12 +11,14 @@ namespace LastBeer.Back.Repository.IRepository
         User GetUserWithFavouriteBars(int id);
         User GetUserWithVisitedBars(int id);
         User GetUserWithScores(int id);
+        List<int> GetUserGameWithScores(int userId, int gameId);
         User GetUserWithAllData(int id);
-        bool InsertUser(User user);
         bool UpdateUser(User user);
         bool DeleteUser(User user);
         bool UserExists(string userName);
         bool UserExistsById(int userId);
+        Task<UserLoginResponseDto> Login(UserLoginDto userLoginDto);
+        Task<User> Registration(UserInsertDto userInsertDto);
         bool Save();
     }
 }
