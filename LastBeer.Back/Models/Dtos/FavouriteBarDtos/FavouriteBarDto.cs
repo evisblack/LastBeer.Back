@@ -1,19 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace LastBeer.Back.Models
+namespace LastBeer.Back.Models.Dtos.FavouriteBarDtos
 {
-    public class FavouriteBar
+    public class FavouriteBarDto
     {
-        [Key]
         public int Id { get; set; }
-
-        [ForeignKey("BarId")]
         public int BarId { get; set; }
         public Bar Bar { get; set; }
-
-        [ForeignKey("UserId")]
         public int UserId { get; set; }
     }
-
 }
