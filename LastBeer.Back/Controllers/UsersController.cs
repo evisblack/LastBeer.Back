@@ -137,5 +137,42 @@ namespace LastBeer.Back.Controllers
 
             return Ok(_apiResponse);
         }
+
+        [HttpPut("{userId:int}")]
+        public IActionResult UpdateUser(int userId, [FromBody] UserUpdateDto userUpdateDto)
+        {
+            if (userUpdateDto == null || userId != userUpdateDto.Id)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = _mapper.Map<User>(userUpdateDto);
+
+            if (!_userRepository.UpdateUser(user))
+            {
+                ModelState.AddModelError("", "Algo salió mal al actualizar el usuario");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{userId:int}")]
+        public IActionResult DeleteUser(int userId)
+        {
+            var user = _userRepository.GetById(userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            if (!_userRepository.DeleteUser(user))
+            {
+                ModelState.AddModelError("", "Algo salió mal al eliminar el usuario");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
     }
 }

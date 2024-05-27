@@ -24,6 +24,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IFavouriteBarRepository, FavouriteBarRepository>();
 builder.Services.AddScoped<IBarRepository, BarRepository>();
 builder.Services.AddScoped<IVisitedBarRepository, VisitedBarRepository>();
+builder.Services.AddScoped<IGameRepository, GameRepository>();
+builder.Services.AddScoped<IScoreRepository, ScoreRepository>();
 
 //Agregar Automapper
 builder.Services.AddAutoMapper(typeof(AppMapper));

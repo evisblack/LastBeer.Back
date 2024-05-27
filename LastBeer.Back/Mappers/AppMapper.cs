@@ -2,6 +2,8 @@
 using LastBeer.Back.Models;
 using LastBeer.Back.Models.Dtos.BarDtos;
 using LastBeer.Back.Models.Dtos.FavouriteBarDtos;
+using LastBeer.Back.Models.Dtos.GameDtos;
+using LastBeer.Back.Models.Dtos.ScoreDtos;
 using LastBeer.Back.Models.Dtos.UserDtos;
 using LastBeer.Back.Models.Dtos.VisitedBarDtos;
 
@@ -23,6 +25,12 @@ namespace LastBeer.Back.Mappers
             CreateMap<Bar, BarInsertDto>().ReverseMap();
 
             CreateMap<VisitedBar, VisitedBarDto>().ReverseMap();
+
+            CreateMap<Game, GameDto>().ReverseMap();
+            CreateMap<Game, GameInsertDto>().ReverseMap();
+
+            CreateMap<Score, ScoreDto>().ReverseMap();
+            CreateMap<Score, ScoreInsertDto>().ReverseMap();
         }
     }
 }
