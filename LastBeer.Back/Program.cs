@@ -30,15 +30,27 @@ builder.Services.AddScoped<IScoreRepository, ScoreRepository>();
 //Agregar Automapper
 builder.Services.AddAutoMapper(typeof(AppMapper));
 
+// Configura CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder
+            .WithOrigins("http://localhost:4200") // Agrega aquí la URL de tu aplicación Angular
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
+
 var app = builder.Build();
 
 app.UseSwagger();
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
+if (app.Environment.IsDevelopment())
+{
     app.UseSwaggerUI();
-//}
+}
+// Configura el middleware de CORS
+app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
 
