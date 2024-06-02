@@ -38,9 +38,9 @@ namespace LastBeer.Back.Controllers
         }
 
         [HttpDelete("removeFavouriteBar")]
-        public IActionResult RemoveFavouriteBar(int userId, int barId)
+        public IActionResult RemoveFavouriteBar(int userId, string placeId)
         {
-            bool result = _favouriteBarRepository.RemoveFavouriteBar(userId, barId);
+            bool result = _favouriteBarRepository.RemoveFavouriteBar(userId, placeId);
 
             if (result)
             {

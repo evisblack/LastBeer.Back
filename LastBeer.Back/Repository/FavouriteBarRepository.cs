@@ -44,14 +44,19 @@ namespace LastBeer.Back.Repository
             return false;
         }
 
-        public bool RemoveFavouriteBar(int userId, int barId)
+        public bool RemoveFavouriteBar(int userId, string placeId)
         {
-            var favouriteBar = _dbContext.FavouriteBars.FirstOrDefault(fb => fb.UserId == userId && fb.BarId == barId);
-            if (favouriteBar != null)
+            var existingBar = _barRepository.GetByPlaceId(placeId);
+            if (existingBar != null)
             {
-                _dbContext.FavouriteBars.Remove(favouriteBar);
-                return _dbContext.SaveChanges() > 0;
+                var favouriteBar = _dbContext.FavouriteBars.FirstOrDefault(fb => fb.UserId == userId && fb.BarId == existingBar.Id);
+                if (favouriteBar != null)
+                {
+                    _dbContext.FavouriteBars.Remove(favouriteBar);
+                    return _dbContext.SaveChanges() > 0;
+                }
             }
+                
             return false;
         }
 
