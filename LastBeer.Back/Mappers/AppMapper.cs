@@ -23,6 +23,7 @@ namespace LastBeer.Back.Mappers
 
             CreateMap<Bar, BarDto>().ReverseMap();
             CreateMap<Bar, BarInsertDto>().ReverseMap();
+            CreateMap<Bar, BarFavouriteInsertDto>().ReverseMap();
 
             CreateMap<VisitedBar, VisitedBarDto>().ReverseMap();
 

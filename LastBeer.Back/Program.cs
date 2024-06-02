@@ -35,7 +35,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
         builder => builder
-            .WithOrigins("http://localhost:4200") // Agrega aquí la URL de tu aplicación Angular
+            .WithOrigins("")
             .AllowAnyMethod()
             .AllowAnyHeader());
 });

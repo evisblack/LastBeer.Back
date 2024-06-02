@@ -22,10 +22,10 @@ namespace LastBeer.Back.Controllers
         }
 
         [HttpPost("addFavouriteBar")]
-        public IActionResult AddFavouriteBar(int userId, BarDto barDto)
+        public IActionResult AddFavouriteBar([FromBody] BarFavouriteInsertDto barDto)
         {
             var bar = _mapper.Map<Bar>(barDto);
-            bool result = _favouriteBarRepository.AddFavouriteBar(userId, bar);
+            bool result = _favouriteBarRepository.AddFavouriteBar(barDto.UserId, bar);
 
             if (result)
             {
