@@ -36,7 +36,7 @@ namespace LastBeer.Back.Repository
                 {
                     UserId = userId,
                     BarId = existingBar.Id,
-                    VisitedDate = DateTime.Now // Set the visit date to now
+                    VisitedDate = DateTime.UtcNow  // Set the visit date to now
                 };
                 _dbContext.VisitedBars.Add(visitedBar);
             }

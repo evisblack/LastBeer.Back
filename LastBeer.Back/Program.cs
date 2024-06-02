@@ -33,11 +33,13 @@ builder.Services.AddAutoMapper(typeof(AppMapper));
 // Configura CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowSpecificOrigin",
-        builder => builder
-            .WithOrigins("")
-            .AllowAnyMethod()
-            .AllowAnyHeader());
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
 });
 
 var app = builder.Build();
@@ -49,8 +51,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwaggerUI();
 }
-// Configura el middleware de CORS
-app.UseCors("AllowSpecificOrigin");
+
+// Use CORS
+app.UseCors("AllowAllOrigins");
 
 app.UseHttpsRedirection();
 

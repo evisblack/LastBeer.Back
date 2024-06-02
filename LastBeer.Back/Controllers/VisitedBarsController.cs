@@ -22,10 +22,10 @@ namespace LastBeer.Back.Controllers
         }
 
         [HttpPost("addOrUpdateVisitedBar")]
-        public IActionResult AddOrUpdateVisitedBar(int userId, BarDto barDto)
+        public IActionResult AddOrUpdateVisitedBar([FromBody] BarVisitedInsertDto barDto)
         {
             var bar = _mapper.Map<Bar>(barDto);
-            bool result = _visitedBarRepository.AddOrUpdateVisitedBar(userId, bar);
+            bool result = _visitedBarRepository.AddOrUpdateVisitedBar(barDto.UserId, bar);
 
             if (result)
             {
